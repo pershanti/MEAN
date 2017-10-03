@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function magic_multiply(x,y){
+			
+			if (typeof(x) == Number){
+				if (typeof(y) == Number {
+					x = x*y;
+				}
+				else if (typeof(y)==String){
+					console.log("Invalid type: string")
+					return;
+				}
+			}
+			else if(typeof(y) == number){
+				if (typeof(x) == String){
+					console.log("Invalid type: string")
+					return;
+				}
+				for (var i=0; i<x.length;i++){
+					x[i] = x[i]*y;
+				}
+			}
+			
+			return x;
+		}
+		let test1 = magic_multiply(5,2);
+		let test2 = magic_multiply(0,0);
+		let test3 = magic_multiply([1,2,3],2)
+
+		console.log(test1);
+		console.log(test2);
+		console.log(test3);
+
+
+
+	</script>
+	
+</body>
+</html>
