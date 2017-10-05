@@ -60,8 +60,8 @@ function Ninja(name, health=100) {
     }
 }
 
-var ninja1 = new Ninja("Shantini")
-var ninja2 = new Ninja("Jose")
+var ninja1 = new Ninja("NinjaGod")
+var ninja2 = new Ninja("NinjaDemon")
 
 ninja1.punch(ninja2)
 ninja1.kick(ninja2)
