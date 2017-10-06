@@ -1,0 +1,24 @@
+{
+  "name": "MEAN",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JSBasics2.js",
+  "dependencies": {
+    "express": "^4.16.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pershanti/MEAN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pershanti/MEAN/issues"
+  },
+  "homepage": "https://github.com/pershanti/MEAN#readme"
+}
