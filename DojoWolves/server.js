@@ -15,42 +15,91 @@ app.listen(8000, function() {
     console.log("listening on port 8000");
 })
 
-var QuoteSchema = new mongoose.Schema({
+var WolfSchema = new mongoose.Schema({
     name: String,
-    quote: String
+    color: String
 })
    
-mongoose.model('Quote', QuoteSchema); // We are setting this Schema in our Models as 'User'
-var Quote = mongoose.model('Quote') // We are retrieving this Schema from our Models, named 'User'
+mongoose.model('Wolf', WolfSchema); 
+var Wolf = mongoose.model('Wolf')
    
 
-app.get('/', function(req, res) {
-    
-    res.render('index')
-
-    
-})
-app.post('/quotes', function (req, res) {
-    console.log("POST DATA", req.body);
-    // create a new User with the name and age corresponding to those from req.body
-    var quote = new Quote({ name: req.body.name, quote: req.body.quote });
-    quote.save(function (err) {
-        if (err) {
-            console.log('something went wrong');
-        } else { 
-            console.log('successfully added a quote!');
-            res.redirect("/quotes")
-        }
-    })
-})
-
-app.get('/quotes', function (req, res) {
-    Quote.find({}, function (err, quotes) {
+app.get('/', function (req, res) {
+    Wolf.find({}, function (err, wolves) {
         if (err) {
             console.log("Something went wrong")
         }
         else {
-            res.render('quotes', { quotes: quotes })
+            res.render('index', { wolves: wolves })
         }
     })
 })
+
+app.get('/wolves/new', function (req, res){
+    res.render('new_wolf')
+})
+
+
+app.post('/wolves/new', function (req, res) {
+    console.log("POST DATA", req.body);
+    // create a new User with the name and age corresponding to those from req.body
+    var wolf = new Wolf({ name: req.body.name, color: req.body.color });
+    wolf.save(function (err) {
+        if (err) {
+            console.log('something went wrong');
+        } else { 
+            console.log('successfully added a wolf!');
+            res.redirect("/")
+        }
+    })
+})
+
+app.get('/wolves/:id', function (req, res) {
+    Wolf.find({_id: req.params.id}, function (err, wolves) {
+        if (err) {
+            console.log("Something went wrong")
+        }
+        else {
+            res.render('display_wolf', { wolves: wolves })
+        }
+    })
+
+})
+
+app.get('/wolves/edit/:id', function (req, res) {
+    Wolf.find({_id: req.params.id}, function (err, wolves) {
+        if (err) {
+            console.log("Something went wrong")
+        }
+        else {
+            res.render('edit_wolf', { wolves: wolves })
+        }
+    })
+})
+
+
+
+app.post('/wolves/:id', function (req, res) {
+
+    Wolf.update({_id: req.params.id}, {name: req.body.name, color: req.body.color},function (err) {
+        if (err) {
+            console.log('something went wrong');
+        } else { 
+            console.log('successfully saved changes!');
+            res.redirect("/")
+        }
+    })
+})
+
+app.post('/wolves/destroy/:id', function (req, res) {
+        Wolf.remove({_id: req.params.id}, function (err) {
+            if (err) {
+                console.log('something went wrong');
+            } else { 
+                console.log('successfully deleted wolf!');
+                res.redirect("/")
+            }
+        })
+    
+    })
+

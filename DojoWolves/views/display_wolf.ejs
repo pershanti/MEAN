@@ -7,17 +7,16 @@
     <title>The Wolf Pack</title>
 </head>
 <body>
-    <h2>The Wolf Pack</h2>
+    <h2>The Lone Wolf</h2>
     <% for (var x in wolves){ %>
         Wolf Name: <%= wolves[x].name %><br>
         Wolf Color: <%= wolves[x].color %><br>
-        <a href = "/wolves/<%= wolves[x].id %>">View this Wolf</a><br>
         <a href = "/wolves/edit/<%= wolves[x].id %>">Edit this Wolf</a><br>
         <form action = "/wolves/destroy/<%= wolves[x].id %>" method = "post">
             <input type = "submit" value = "Delete this wolf">
         </form>
         <hr>
     <% } %>
-        <a href = "/wolves/new">New Wolf</a>
+    <a href = "/wolves/new">New Wolf</a>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create A New Wolf</title>
+</head>
+<body>
+        <% for (var x in wolves){ %>
+            <form action = "/wolves/<%= wolves[x].id %>", method = 'post' name = 'form'>
+                Wolf Name: <input type = "text", name = "name" value = <%=wolves[x].name%>>
+                <br>
+                Wolf Color: <input type = "text", name = "color" value = <%=wolves[x].color%>>
+                <br>
+                <input type = "submit" value = "Save">
+            </form>
+        <% } %>
+                <button name = "skip"> <a href = "/">Cancel</a>   </button>
+    
+</body>
+</html>
