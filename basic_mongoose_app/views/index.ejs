@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enter Your Info</title>
+</head>
+<body>
+    
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <% for (var x in users) { %>
+                <tr>
+                    <th><%= users[x].name %></th>
+                    <th><%= users[x].age %></th>
+                </tr>
+            <% }%>
+        </table>
+        <form action = '/users', method = 'post' name = 'form'>
+            Your Name: <input type = "text", name = "name">
+            Your Age: <input type = "text", name = "age">
+            <input type = "submit" value = "Submit!">
+        </form>
+
+        
+
+</body>
+</html>
