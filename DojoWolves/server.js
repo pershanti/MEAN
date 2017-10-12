@@ -15,6 +15,9 @@ app.listen(8000, function() {
     console.log("listening on port 8000");
 })
 
+var routes_setter = require('./server/config/routes.js');
+routes_setter(app);
+
 var WolfSchema = new mongoose.Schema({
     name: String,
     color: String
