@@ -1,83 +1,33 @@
-var mongoose = require('mongoose');
-var Wolf = mongoose.model('Wolf');
-module.exports = function(app){
+var wolves = require('../controllers/wolves.js');
+
+module.exports = function (app) {
     app.get('/', function (req, res) {
-        Wolf.find({}, function (err, wolves) {
-            if (err) {
-                console.log("Something went wrong")
-            }
-            else {
-                res.render('index', { wolves: wolves })
-            }
-        })
+        wolves.home(req,res)
     })
     
     app.get('/wolves/new', function (req, res){
         res.render('new_wolf')
     })
     
-    
     app.post('/wolves/new', function (req, res) {
-        console.log("POST DATA", req.body);
-        // create a new User with the name and age corresponding to those from req.body
-        var wolf = new Wolf({ name: req.body.name, color: req.body.color });
-        wolf.save(function (err) {
-            if (err) {
-                console.log('something went wrong');
-            } else { 
-                console.log('successfully added a wolf!');
-                res.redirect("/")
-            }
-        })
+        wolves.creae(req,res)
     })
     
     app.get('/wolves/:id', function (req, res) {
-        Wolf.find({_id: req.params.id}, function (err, wolves) {
-            if (err) {
-                console.log("Something went wrong")
-            }
-            else {
-                res.render('display_wolf', { wolves: wolves })
-            }
-        })
-    
+        wolves.show(req,res)
     })
     
     app.get('/wolves/edit/:id', function (req, res) {
-        Wolf.find({_id: req.params.id}, function (err, wolves) {
-            if (err) {
-                console.log("Something went wrong")
-            }
-            else {
-                res.render('edit_wolf', { wolves: wolves })
-            }
-        })
+        wolves.editGet(req,res)
     })
-    
-    
     
     app.post('/wolves/:id', function (req, res) {
     
-        Wolf.update({_id: req.params.id}, {name: req.body.name, color: req.body.color},function (err) {
-            if (err) {
-                console.log('something went wrong');
-            } else { 
-                console.log('successfully saved changes!');
-                res.redirect("/")
-            }
-        })
+       wolves.editPost(req,res)
     })
     
     app.post('/wolves/destroy/:id', function (req, res) {
-            Wolf.remove({_id: req.params.id}, function (err) {
-                if (err) {
-                    console.log('something went wrong');
-                } else { 
-                    console.log('successfully deleted wolf!');
-                    res.redirect("/")
-                }
-            })
-        
-        })    
+        wolves.destroy(req, res)
+    })
 
 }
